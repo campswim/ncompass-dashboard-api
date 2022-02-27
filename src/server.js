@@ -2,18 +2,8 @@
 
 // 3rd-party Resources
 const express = require('express');
-const app = express();
-
 const cors = require('cors');
-app.use(cors());
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-  next();
-});
+const app = express();
 
 // http request logger-middleware for node.js
 const morgan = require('morgan');
@@ -22,11 +12,12 @@ const morgan = require('morgan');
 const errorHandler = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
 const logger = require('./auth/middleware/logger.js');
-const authRoutes = require('./routes/auth-routes.js');
+// const authRoutes = require('./routes/auth-routes.js');
 const v1Routes = require('./routes/v1.js');
-const v2Routes = require('./routes/v2.js');
+// const v2Routes = require('./routes/v2.js');
 
 // App-level middleware
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,7 +34,7 @@ app.use('/api', v1Routes);
 // app.use('/api/GPOrders', v2Routes);
 // app.use('/api/Purge', v2Routes);
 
-app.use(authRoutes);
+// app.use(authRoutes);
 
 // Proof of life
 app.get('/', (req, res) => res.send('Howdy, folks!'));
