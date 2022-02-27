@@ -4,6 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+app.use(cors());
 
 // http request logger-middleware for node.js
 const morgan = require('morgan');
@@ -16,25 +17,7 @@ const logger = require('./auth/middleware/logger.js');
 const v1Routes = require('./routes/v1.js');
 // const v2Routes = require('./routes/v2.js');
 
-const corsOpts = {
-  origin: '*',
-
-  methods: [
-    'GET',
-    'POST',
-    'PUT',
-    'DELETE',
-  ],
-
-  allowedHeaders: [
-    'Content-Type',
-    'Access-Control-Allow-Origin'
-  ],
-};
-
-app.use(cors(corsOpts));
 // App-level middleware
-// app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
