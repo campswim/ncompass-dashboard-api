@@ -16,8 +16,24 @@ const logger = require('./auth/middleware/logger.js');
 const v1Routes = require('./routes/v1.js');
 // const v2Routes = require('./routes/v2.js');
 
+const corsOpts = {
+  origin: '*',
+
+  methods: [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
 // App-level middleware
-app.use(cors());
+// app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
