@@ -82,6 +82,7 @@ async function handleGetOne(req, res) {
 }
 
 async function handleGetSummary(req, res) {
+  console.log({req}, {res});
   try {
     const responseArray = [];
     const query = req.params.query;
