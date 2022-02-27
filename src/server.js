@@ -2,10 +2,24 @@
 
 // 3rd-party Resources
 const express = require('express');
-const cors = require('cors');
-// Prepare the express app
 const app = express();
+
+const cors = require('cors');
 app.use(cors());
+
+// const allowCrossDomain = function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+//   // intercept OPTIONS method
+//   if ('OPTIONS' == req.method) {
+//     res.send(200);
+//   }
+//   else {
+//     next();
+//   }
+// };
 
 // http request logger-middleware for node.js
 const morgan = require('morgan');
@@ -17,7 +31,6 @@ const logger = require('./auth/middleware/logger.js');
 const authRoutes = require('./routes/auth-routes.js');
 const v1Routes = require('./routes/v1.js');
 const v2Routes = require('./routes/v2.js');
-
 
 // App-level middleware
 app.use(morgan('dev'));
