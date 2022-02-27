@@ -3,6 +3,9 @@
 // 3rd-party Resources
 const express = require('express');
 const cors = require('cors');
+// Prepare the express app
+const app = express();
+app.use(cors());
 
 // http request logger-middleware for node.js
 const morgan = require('morgan');
@@ -15,9 +18,6 @@ const authRoutes = require('./routes/auth-routes.js');
 const v1Routes = require('./routes/v1.js');
 const v2Routes = require('./routes/v2.js');
 
-// Prepare the express app
-const app = express();
-app.use(cors());
 
 // App-level middleware
 app.use(morgan('dev'));
