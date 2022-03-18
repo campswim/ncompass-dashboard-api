@@ -29,8 +29,12 @@ class DataCollection {
             return this.model.find({ gpPushStatusType: parseInt(status) }); // For the dashboard page.
           } else return this.model.find({ status: query }); // For failed CRM and staged orders on the order-view page.
         }
+      } else {
+        return this.model.findById(_id);
       }
-    } else return this.model.find({});
+    } else {
+      return this.model.find({});
+    }
   }
 
   // Update
