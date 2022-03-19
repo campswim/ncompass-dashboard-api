@@ -93,7 +93,6 @@ async function handleGetSummary(req, res) {
 
     if (allRelevantRecords && allRelevantRecords.length > 0) {
       allRelevantRecords.forEach(record => {
-
         const response = {
           market: record.market,
           orderCount: 1,
@@ -107,11 +106,11 @@ async function handleGetSummary(req, res) {
         if (daysBack === -1) {
           if (responseArray.length === 0) responseArray.push(response);
           else {
-            responseArray.forEach(response => {
-              if (record.market === response.market) {
-                response.orderCount++;
-                response.totalAmount = response.totalAmount + record.orderTotalAmount;
-              }
+            responseArray.forEach(item => {
+              if (record.market === item.market) {
+                item.orderCount++;
+                item.totalAmount = item.totalAmount + record.orderTotalAmount;
+              } else responseArray.push(response);
             })
           }
         } 
@@ -120,11 +119,11 @@ async function handleGetSummary(req, res) {
           if (diffOfDays <= 1) {
             if (responseArray.length === 0) responseArray.push(response);
             else {
-              responseArray.forEach(response => {
-                if (record.market === response.market) {
-                  response.orderCount++;
-                  response.totalAmount = response.totalAmount + record.orderTotalAmount;
-                }
+              responseArray.forEach(item => {
+                if (record.market === item.market) {
+                  item.orderCount++;
+                  item.totalAmount = item.totalAmount + record.orderTotalAmount;
+                } else responseArray.push(response);
               })
             }
           }
@@ -133,11 +132,11 @@ async function handleGetSummary(req, res) {
         else if (daysBack > 1 && diffOfDays <= daysBack) {
           if (responseArray.length === 0) responseArray.push(response);
           else {
-            responseArray.forEach(response => {
-              if (record.market === response.market) {
-                response.orderCount++;
-                response.totalAmount = response.totalAmount + record.orderTotalAmount;
-              }
+            responseArray.forEach(item => {
+              if (record.market === item.market) {
+                item.orderCount++;
+                item.totalAmount = item.totalAmount + record.orderTotalAmount;
+              } else responseArray.push(response);
             })
           }
         }          
