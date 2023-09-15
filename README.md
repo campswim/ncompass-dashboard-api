@@ -4,7 +4,7 @@
 
 ### Authors
 
-Nathan Cox
+Nathan Cox  
 Chad Larson
 
 ### Set Up
